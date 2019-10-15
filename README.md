@@ -3,7 +3,7 @@
 
 * Author: Meron
 * Links and Resources
-*[submission PR]()
+*[submission PR](https://github.com/meron-401n14/lab-05/pull/1)
 * [travis-ci]()
 * Documentation
 * jsdoc (Server assignments)
