@@ -1,5 +1,7 @@
 'use strict';
 
+const mongoose = require('mongoose');
+
 const DataModel = require('./model.js');
 
 class Teams extends DataModel {

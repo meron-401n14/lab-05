@@ -1,6 +1,10 @@
 'use strict';
-
+/** Class representing a generic mongo model */
 class Model {
+
+  /** model constructor
+   * @param schema {object} - mongo schema
+   */
   constructor(schema) {
     this.schema = schema;
   }
@@ -28,9 +32,14 @@ class Model {
   // CRUD: update - you usually only update something that exists
   // if something exists, it has an id
   update(id, item) {
-    // change a piece of the data
+    // get a user with ID of 1 
+    if(_id) return this.schema.find(1, function(err, item){
+      if(err) throw err;
+   
+      else return  this.schema.item.lastName = 'Sibani';
     // change data where data.id === id
     // [async] write data to file
+  })
     // make sure your change is in this.database
     // write this.database to file
     // look up findByIdAndUpdate
