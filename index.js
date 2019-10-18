@@ -18,21 +18,28 @@ let people = new People();
 async function makePerson(person) {
   //let made = await people.create(person);
 
+  
+  
+try {
   let found = await people.getByQuery(person);
   console.log(found);
   return found;
 }
-
+catch(err) {
+  console.log(err)
+}
+}
 makePerson({
   firstName: 'Sarah',
-  lastName: 'Smalls'
+  lastName: 'Smalls',
+ // likes:'dog'
 }).then(() => {
   console.log("i'm here!");
   mongoose.connection.close();
+  
 });
 
-// mongoose.connection.close();
-
+//mongoose.connection.close();
 //const Validator = require('./lib/validator.js');
 // const uuidValidate = require('uuid-validate');
 

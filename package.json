@@ -1,7 +1,7 @@
 {
-  "name": "demo",
+  "name": "lab-05",
   "version": "1.0.0",
-  "description": "",
+  "description": "* Author: Meron * Links and Resources *[submission PR](https://github.com/meron-401n14/lab-05/pull/1) * [travis-ci]() * Documentation * jsdoc (Server assignments) * Modules * modle.js * validator.test.js * Exported Values and Methods",
   "main": "players-schema.js",
   "scripts": {
     "test": "jest --verbose",
@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "faker": "^4.1.0",
     "jest": "^24.8.0",
     "mongodb": "^3.3.2",
@@ -22,5 +23,17 @@
     "supertest": "^4.0.2",
     "uuid": "^3.3.2",
     "uuid-validate": "0.0.3"
-  }
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meron-401n14/lab-05.git"
+  },
+  "bugs": {
+    "url": "https://github.com/meron-401n14/lab-05/issues"
+  },
+  "homepage": "https://github.com/meron-401n14/lab-05#readme"
 }
