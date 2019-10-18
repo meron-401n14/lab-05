@@ -1,5 +1,7 @@
 'use strict';
 /** Class representing a generic mongo model */
+const schema = require('./people-schema.js');
+
 class Model {
 
   /** model constructor

@@ -1,19 +1,36 @@
+
 'use strict';
 
-const mongoose = require('mongoose');
+const Model = require('./model.js');
 
-const DataModel = require('./model.js');
+const schema = require('./teams-schema.js');
 
-class Teams extends DataModel {
-  constructor(file) {
-    super(
-      {
-        id: { required: true, type: 'uuid' },
-        name: { required: true, type: 'string' }
-      },
-      file
-    );
+
+class Teams extends Model {
+  constructor() {
+    super(schema);
   }
 }
 
 module.exports = Teams;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

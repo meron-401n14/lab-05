@@ -1,7 +1,8 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const db = 'mongodb+srv://meron:code@me!@cfcluster-kexaa.mongodb.net/test?retryWrites=true&w=majority/app';
+//const db = 'mongodb+srv://meron:code@me!@cfcluster-kexaa.mongodb.net/test?retryWrites=true&w=majority/app';
+const db = 'mongodb://meron:code@me!@cfcluster-shard-00-01-kexaa.mongodb.net:27017/app'
 
 const configs = {
   useNewUrlParser: true,
@@ -10,34 +11,67 @@ const configs = {
 
 mongoose.connect(db, configs);
 
-//const Teams = require('./models/teams.js');
+const Teams = require('./models/teams.js');
 const People = require('./models/people.js');
 
+
+
 let people = new People();
+let team = new Teams();
 
-async function makePerson(person) {
-  //let made = await people.create(person);
+const makePerson = async () => {
+  let student = {
+    firstName:'Meron',
+    lastName: 'sibani',
+    nextBirthdate: '10/10/2020'
+  };
 
-  
-  
-try {
-  let found = await people.getByQuery(person);
-  console.log(found);
-  return found;
+  let cfStudent = await people.create(student);
+  console.log('Student Created', cfStudent);
+
+  let allStudents = await people.get()
+  console.log('All Students', allStudents);
+
+  let oneStudent = await people.get('_team');
+  console.log('One Student', oneStudent);
 }
-catch(err) {
-  console.log(err)
-}
-}
-makePerson({
-  firstName: 'Sarah',
-  lastName: 'Smalls',
- // likes:'dog'
-}).then(() => {
-  console.log("i'm here!");
-  mongoose.connection.close();
+mongoose.connection.close();
+
+makePerson();
+
+
+
+
+// async function makePerson(person) {
+//   //let made = await people.create(person);
+//   //try {
+//     let found = await people.getByQuery(person);
+//     console.log(found);
+//     return found;
+//   // }
+ 
+
+
+
+
+// {
+//   firstName: 'Meron',
+//   lastName: 'Sibani',
+//   nextBirthdate: '10/10/2020'
+
+// }).then(() => {
+//   console.log("i'm here!");
   
-});
+// });
+
+// mmakeTeam({
+//   teamName: 'seahawks',
+//   memberName: 'Russell Wilson'
+// }).then(()=>{
+//   console.log('game over!')
+//   mongoose.connection.close();
+// })
+
 
 //mongoose.connection.close();
 //const Validator = require('./lib/validator.js');
