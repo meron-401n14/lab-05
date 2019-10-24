@@ -2,6 +2,7 @@
 /** Class representing a generic mongo model */
 const schema = require('./people-schema.js');
 
+
 class Model {
 
   /** model constructor
@@ -21,7 +22,7 @@ class Model {
   get(_id) {
     // return a Promise!
     if (_id) return this.schema.findOne({ _id });
-    else return this.schema.findOne({});
+    else return this.schema.find({});
   }
 
   getByQuery(query) {
@@ -33,27 +34,26 @@ class Model {
 
   // CRUD: update - you usually only update something that exists
   // if something exists, it has an id
-  update(id, item) {
+  update(_id, item) {
     // get a user with ID of 1 
-    if(_id) return this.schema.find(1, function(err, item){
-      if(err) throw err;
-   
-      else return  this.schema.item.lastName = 'Sibani';
+    return schema.findByIdAndUpdate(_id, item, { new: true });
     // change data where data.id === id
     // [async] write data to file
-  })
-    // make sure your change is in this.database
-    // write this.database to file
-    // look up findByIdAndUpdate
   }
+  // make sure your change is in this.database
+  // write this.database to file
+  // look up findByIdAndUpdate
+
 
   // CRUD: delete
-  delete(id) {
-    // find this.database object where object.id === id (forEach??)
-    // remove that object (map??)
-    // [async] write the new (smaller) this.database to the file
-    // look up findByIdAndDelete
+  delete(_id) {
+    return schema.findByIdAndDelete(_id);
   }
+  // find this.database object where object.id === id (forEach??)
+  // remove that object (map??)
+  // [async] write the new (smaller) this.database to the file
+  // look up findByIdAndDelete
+
 }
 
 module.exports = Model;

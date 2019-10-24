@@ -8,8 +8,9 @@ const peopleSchema = mongoose.Schema({
   firstName: { required: true, type: String },
   lastName: { required: true, type: String },
   nextBirthdate: { type: Date, default: Date.now },
-  likes: ['dog', 'cat', 'none'],
+  likes: {type: String, enum: ['dog', 'cat', 'none', 'both']},
   _team: { type: mongoose.Schema.Types.ObjectId },
 });
 
 module.exports = mongoose.model('people', peopleSchema); 
+//Math.floor(Math.random() * 10)

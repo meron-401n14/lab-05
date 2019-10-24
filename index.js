@@ -1,16 +1,64 @@
 'use strict';
-
 const mongoose = require('mongoose');
-//const db = 'mongodb+srv://meron:code@me!@cfcluster-kexaa.mongodb.net/test?retryWrites=true&w=majority/app';
-const db = 'mongodb://meron:code@me!@cfcluster-shard-00-01-kexaa.mongodb.net:27017/app'
-
+const db ='mongodb+srv://meron123:meron123@cfcluster-kexaa.mongodb.net/app?retryWrites=true&w=majority';
 const configs = {
   useNewUrlParser: true,
   useUnifiedTopology: true
 };
+const Teams = require('./models/teams.js');
+const People = require('./models/people.js');
 
-mongoose.connect(db, configs);
+let people = new People();
+let team = new Teams();
 
+const makePerson = async () => {
+  let peopled = {
+    firstName: 'James',
+    lastName: 'Dunn',
+    nextBirthdate: '2020/09/05',
+    likes: 'both',
+    _team:'5db170a0a8abcb4e6999c13f'
+    
+
+  }
+  let newPerson = await people.create(peopled);
+  console.log('peopleCreated', newPerson);
+
+}
+
+const makeTeam = async () => {
+  let team1 = {
+    teamName: 'Purple Cat',
+    color: 'purple',
+    memberName: ''
+  }
+
+  let newTeam = await team.create(team1);
+  console.log('team created:', newTeam);
+
+}
+
+async function foo() {
+  await mongoose.connect(db, configs);
+  console.log('connected');
+  //await makePerson(); 
+  console.log('person created!');
+ //await makeTeam();
+ console.log('team created!');
+  await mongoose.connection.close();
+  console.log("closed"); 
+}
+
+foo(); 
+
+
+
+
+
+
+
+
+/**
 const Teams = require('./models/teams.js');
 const People = require('./models/people.js');
 
@@ -19,25 +67,36 @@ const People = require('./models/people.js');
 let people = new People();
 let team = new Teams();
 
-const makePerson = async () => {
-  let student = {
-    firstName:'Meron',
-    lastName: 'sibani',
-    nextBirthdate: '10/10/2020'
+const makePerson = async () =>{
+  try {
+  let peopled = {
+    firstName: "meron",
+    lastName :"sibani"
   };
+  let newPerson = await people.create(peopled);
+  console.log('peopleCreated', newPerson);
 
-  let cfStudent = await people.create(student);
-  console.log('Student Created', cfStudent);
-
-  let allStudents = await people.get()
-  console.log('All Students', allStudents);
-
-  let oneStudent = await people.get('_team');
-  console.log('One Student', oneStudent);
 }
-mongoose.connection.close();
+catch(e){
+  console.error(e);
+}
+  
+}
 
 makePerson();
+*/
+
+  // let cfStudent = await people.create(student);
+  // console.log('Student Created', cfStudent);
+
+  // let allStudents = await people.get()
+  // console.log('All Students', allStudents);
+
+  // let oneStudent = await people.get('_team');
+  // console.log('One Student', oneStudent);
+
+
+
 
 
 
