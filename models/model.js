@@ -52,11 +52,20 @@ class Model {
   delete(_id) {
     return schema.findByIdAndDelete(_id);
   }
+  /**
+   * @query
+   * count files 
+   */
+  count(query) {
+    if(query) return this.schema.countFiles(query);
+    else return this.schema.countFiles({});
+  }
 
 
 }
 
 exports.Model = Model;
+
 
 
 
