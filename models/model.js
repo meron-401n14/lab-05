@@ -2,7 +2,6 @@
 /** Class representing a generic mongo model */
 const schema = require('./people-schema.js');
 
-
 class Model {
 
   /** model constructor
@@ -11,49 +10,53 @@ class Model {
   constructor(schema) {
     this.schema = schema;
   }
-  // CRUD: create
+  /**
+   * @ operation create 
+   * @param {} item 
+   * validate and create new item model to mongod DB 
+   */
   create(item) {
-    // returns a Promise!
+    
     let validatedItem = new this.schema(item);
     return validatedItem.save();
   }
-
-  // CRUD: read / search - we don't know if it exists
+  /**
+ * get item by id from mondo DB record 
+ * @param {} _id 
+ */
   get(_id) {
-    // return a Promise!
     if (_id) return this.schema.findOne({ _id });
     else return this.schema.find({});
   }
-
+  /**
+   * find by query
+   * @param {*} query 
+   */
   getByQuery(query) {
-    // query is an object!
-    // ex: {firstName: 'Sarah'}
     if (query) return this.schema.find(query);
     else return this.schema.find({});
   }
-
-  // CRUD: update - you usually only update something that exists
-  // if something exists, it has an id
+  /**
+   * @param _id
+   * @param item
+   * update the item with id
+   */
   update(_id, item) {
-    // get a user with ID of 1 
     return schema.findByIdAndUpdate(_id, item, { new: true });
-    // change data where data.id === id
-    // [async] write data to file
   }
-  // make sure your change is in this.database
-  // write this.database to file
-  // look up findByIdAndUpdate
-
-
-  // CRUD: delete
+  /**
+ * delete operation 
+ * @param {*} _id 
+ * delete item with the id 
+ */ 
   delete(_id) {
     return schema.findByIdAndDelete(_id);
   }
-  // find this.database object where object.id === id (forEach??)
-  // remove that object (map??)
-  // [async] write the new (smaller) this.database to the file
-  // look up findByIdAndDelete
+
 
 }
 
-module.exports = Model;
+exports.Model = Model;
+
+
+
