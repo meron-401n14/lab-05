@@ -1,19 +1,37 @@
 # lab-05
 # Data Modeling
+### Author: Meron
 
-* Author: Meron
-* Links and Resources
-*[submission PR](https://github.com/meron-401n14/lab-05/pull/1)
+### Links and Resources
+* [submission PR](https://github.com/meron-401n14/lab-05/pull/1)
 * [travis-ci]()
-* Documentation
-* jsdoc (Server assignments)
-* Modules
-* modle.js
-* validator.test.js
-* Exported Values and Methods
 
-* Setup
-* Tests
-* npm test
-* ![]()
+* Documentation
+* [api docs](http://xyz.com) (API servers)
+* [jsdoc](http://xyz.com) (Server assignments)
+
+
+### Setup
+#### `.env` requirements
+* `PORT` - 3000
+* `MONGODB_URI` - mongodb+srv://meron123:meron123@cfcluster-kexaa.mongodb.net/app2?retryWrites=true&w=majority';
+
+#### Running the app
+* `npm start`
+
+  
+#### Tests
+* How do you run tests?
+* What assertions were made?
+* What assertions need to be / should be made?
+
+#### UML
+Link to an image of the UML for your application and response to events
+
+
+
+
+
+
+
 

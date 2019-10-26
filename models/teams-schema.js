@@ -8,6 +8,7 @@ const teamSchema = mongoose.Schema({
   memberName: { required: false, type: String },
   
 });
-exports.teamSchema = teamSchema;
+//exports.teamSchema = teamSchema;
+module.exports = mongoose.model('teams', teamSchema);
   
 

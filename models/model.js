@@ -2,14 +2,17 @@
 /** Class representing a generic mongo model */
 const schema = require('./people-schema.js');
 
-class Model {
 
-  /** model constructor
-   * @param schema {object} - mongo schema
-   */
+
+/** model constructor
+ * @param schema {object} - mongo schema
+ */
+
+class Model {
   constructor(schema) {
-    this.schema = schema;
+    this.schema= schema;
   }
+
   /**
    * @ operation create 
    * @param {} item 
@@ -57,14 +60,14 @@ class Model {
    * count files 
    */
   count(query) {
-    if(query) return this.schema.countFiles(query);
-    else return this.schema.countFiles({});
+    if(query) return this.schema.countDocuments(query);
+    else return this.schema.countDocuments({});
   }
 
 
 }
 
-exports.Model = Model;
+module.exports = Model;
 
 
 
