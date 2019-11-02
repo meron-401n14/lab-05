@@ -67,7 +67,7 @@ const personInformation = async () => {
     return people.find({});
     //({name:firstName, Team:people.teamName, Birthday:people.nextBirthdate, Likes:people.likes});
   else return "No record Found"
-  
+}
   /**
    * This function call each the above functions asynchronously 
    * @function  foo 
@@ -87,12 +87,5 @@ const personInformation = async () => {
     console.log("closed"); 
   }
   
-  foo(); 
-}
 
-
-    
-    
-
-
-
+foo(); 

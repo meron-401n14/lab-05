@@ -21,7 +21,7 @@
 
   
 #### Tests
-* How do you run tests?
+* How do you run tests? npm test
 * What assertions were made?
 * What assertions need to be / should be made?
 
