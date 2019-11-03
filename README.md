@@ -26,7 +26,7 @@
 * What assertions need to be / should be made?
 
 #### UML
-Link to an image of the UML for your application and response to events
+* ![dataModel](mongooseSchema.jpg)
 
 
 
