@@ -19,16 +19,17 @@ let team = new Teams();
  */
 const makePerson = async () => {
   let peopled = {
-    firstName: 'James',
+    firstName: 'Testwhy',
     lastName: 'Dunn',
     nextBirthdate: '2020/09/05',
-    likes: 'both'
+    likes: 'both',
+    
   }
   let newPerson = await people.create(peopled);
-  console.log('peopleCreated', newPerson);
+  //console.log('peopleCreated', newPerson);
 
-  let allPerson = await people.get(firstName);
-  console.log('all Person', allPerson);
+  let allPerson = await people.get();
+  //console.log('all Person', allPerson);
 
 }
 /**
@@ -77,7 +78,7 @@ const personInformation = async () => {
   async function foo() {
     await mongoose.connect(db, configs);
     console.log('connected');
-    //await makePerson(); 
+   // await makePerson(); 
     console.log('person created!');
    //await makeTeam();
    await countData();
