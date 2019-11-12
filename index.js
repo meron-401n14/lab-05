@@ -38,8 +38,9 @@ const makePerson = async () => {
  */
 const makeTeam = async () => {
   let team1 = {
-    teamName: 'Purple Cat',
-    color: 'purple',
+    teamName: 'Yellow Rhino',
+    color: 'yellow',
+    memberName: 'Meron'
   }
   let newTeam = await team.create(team1);
   console.log('team created:', newTeam);
@@ -61,14 +62,38 @@ const countData = async () => {
  * @function personInformation
  */
 const personInformation = async () => {
- let detail = await people.getByQuery(people.firstName, people.lastName);
- console.log(detail)
- 
-  if(people.firstName && people.lastName) 
-    return people.find({});
-    //({name:firstName, Team:people.teamName, Birthday:people.nextBirthdate, Likes:people.likes});
-  else return "No record Found"
+ let detail = await people.get();
+ detail.forEach(d =>{
+   if(people.firstName && people.lastName) return {firstName:d.firstName, lastName:d.lastName}
+   //console.log(d.firstName);
+   else{
+     return 'not found';
+   }
+ });
 }
+//console.log(detail)
+//  detail.forEach(item =>{
+//    if(item.firstName && item.lastName) //console.log(item)
+   
+  //  if(people.firstName && people.lastName) return item 
+  //  console.log(item)
+   //else return "No Record Found";
+ 
+//  console.log(detail)
+//  //.forEach(item => {
+//    if(people.firstName) return detail 
+//    else return "No Record Found";
+ //console.log(detail)
+ 
+
+  // //if(people.firstName && people.lastName) 
+  //   if(people.firstName){
+
+  //     return people.get();
+  //   }else
+  //   //({name:firstName, Team:people.teamName, Birthday:people.nextBirthdate, Likes:people.likes});
+  //  return "No record Found"
+
   /**
    * This function call each the above functions asynchronously 
    * @function  foo 
