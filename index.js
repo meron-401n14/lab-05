@@ -19,32 +19,56 @@ let team = new Teams();
  */
 const makePerson = async () => {
   let peopled = {
-    firstName: 'Testwhy',
+    firstName: 'James',
     lastName: 'Dunn',
     nextBirthdate: '2020/09/05',
-    likes: 'both',
-    
+    likes: 'Both',
+    _team: null
   }
+  // console.log(peopled);
   let newPerson = await people.create(peopled);
-  //console.log('peopleCreated', newPerson);
-
-  let allPerson = await people.get();
-  //console.log('all Person', allPerson);
+  console.log('peopleCreated', newPerson);
+ let personid = newPerson._id;
+  updatePerson(personid);
+  let allPerson = await people.get(newPerson);
+  //console.log('from all Person:  ', allPerson);
 
 }
-/**
- * this makes new team to our data base
- * @function maketeam
- */
+
 const makeTeam = async () => {
   let team1 = {
-    teamName: 'Yellow Rhino',
-    color: 'yellow',
-    memberName: 'Meron'
+    teamName: 'Red Heron',
+    color: 'red'
+   
   }
   let newTeam = await team.create(team1);
   console.log('team created:', newTeam);
 }
+/**
+ * update person
+ */
+
+ const updatePerson = async (personId) => {
+   let teams = await team.get();
+   let peoples = await people.get();
+   console.log(peoples);
+   let teamId = teams[2]._id; 
+   //let peopleid = peoples[0]._id;
+
+   const updatedPerson = await people.update(personId, {_team: teamId});
+        return updatedPerson;
+  // console.log("updated", updatedPerson);
+   
+ }
+
+
+
+
+
+/**
+ * this makes new team to our data base
+ * @function maketeam
+ */
     
 /**
  * This counts our team and people data length
@@ -56,43 +80,35 @@ const countData = async () => {
   let Person = await people.count('_id');
   console.log('People', Person)
 }
+
+let myArgs = process.argv.slice(2)
+console.log('myArgs:', myArgs);
+
+
 /**
  * this returns person detail information form our database
  * if the firstName and lastName field is correct 
  * @function personInformation
  */
 const personInformation = async () => {
- let detail = await people.get();
- detail.forEach(d =>{
-   if(people.firstName && people.lastName) return {firstName:d.firstName, lastName:d.lastName}
-   //console.log(d.firstName);
-   else{
-     return 'not found';
-   }
- });
+  let firstName = process.argv[2];
+  let lastName = process.argv[3]; 
+
+  //console.log('firstName:', firstName);
+  let detail = await people.getByQuery({firstName:firstName, lastName:lastName,   });
+  
+  //console.log('here!', detail);
+ // let personData = await detail;
+  let personData =  detail[0];
+  console.log(personData);
+  console.log(`name: ${personData.firstName} ${personData.lastName}`);
+  console.log(`likes: ${personData.likes}`);
+  console.log(`teams: ${personData.Team}`);
+  console.log(`Birthday: ${personData.nextBirthdate}`);
+  
+
 }
-//console.log(detail)
-//  detail.forEach(item =>{
-//    if(item.firstName && item.lastName) //console.log(item)
-   
-  //  if(people.firstName && people.lastName) return item 
-  //  console.log(item)
-   //else return "No Record Found";
- 
-//  console.log(detail)
-//  //.forEach(item => {
-//    if(people.firstName) return detail 
-//    else return "No Record Found";
- //console.log(detail)
- 
 
-  // //if(people.firstName && people.lastName) 
-  //   if(people.firstName){
-
-  //     return people.get();
-  //   }else
-  //   //({name:firstName, Team:people.teamName, Birthday:people.nextBirthdate, Likes:people.likes});
-  //  return "No record Found"
 
   /**
    * This function call each the above functions asynchronously 
@@ -103,11 +119,12 @@ const personInformation = async () => {
   async function foo() {
     await mongoose.connect(db, configs);
     console.log('connected');
-   // await makePerson(); 
+    await makePerson(); 
+    //await makeTeam();
     console.log('person created!');
-   //await makeTeam();
+   await updatePerson();
    await countData();
-   await personInformation();
+   //await personInformation();
    console.log('team created!');
     await mongoose.connection.close();
     console.log("closed"); 
