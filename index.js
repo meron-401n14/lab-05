@@ -22,7 +22,7 @@ let team = new Teams();
  * display the whole record for each person based on the parameter
  */
 
- const readPerson = async (person) => {
+ const readPerson = async () => {
    
   // let myArgs = process.argv.slice(2)
    //console.log('myArgs:', myArgs);

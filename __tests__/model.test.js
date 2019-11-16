@@ -5,6 +5,7 @@ const supertester = require('./supertester.js');
 
 
 let people = new People();
+let team = new Teams();
 
 describe('Model', () => {
   test('can create', () => {
@@ -22,5 +23,10 @@ describe('Model', () => {
     expect(person).toBeDefined();
   });
 
-  xit('can delete', () => {});
+  test('can team create', () => {
+    let newTeam = team.create({teamName:'test', color:'yellow'});
+    expect(newTeam).toBeDefined();
+  });
+
+// xit('can delete', () => {});
 });

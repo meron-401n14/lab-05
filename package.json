@@ -4,9 +4,14 @@
   "description": "* Author: Meron * Links and Resources *[submission PR](https://github.com/meron-401n14/lab-05/pull/1) * [travis-ci]() * Documentation * jsdoc (Server assignments) * Modules * modle.js * validator.test.js * Exported Values and Methods",
   "main": "players-schema.js",
   "scripts": {
+    "lint": "eslint **/*.js",
     "start": "node index.js",
     "test": "jest --verbose",
     "test-watch": "jest --watchAll --verbose"
+    
+     
+      
+  
   },
   "jest": {
     "testEnvironment": "node"
@@ -28,6 +33,9 @@
   "directories": {
     "lib": "lib"
   },
+  
+  
+
   "devDependencies": {},
   "repository": {
     "type": "git",

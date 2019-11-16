@@ -13,9 +13,7 @@ let mongoServer;
 
 async function startDB() {
   mongoServer = new MongoMemoryServer();
-
   const mongoUri = await mongoServer.getConnectionString();
-
   const mongooseOptions = {
     useNewUrlParser: true,
     useCreateIndex: true
@@ -23,6 +21,8 @@ async function startDB() {
 
   await mongoose.connect(mongoUri, mongooseOptions);
 }
+
+
 
 async function stopDB() {
   await mongoose.disconnect();
