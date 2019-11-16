@@ -7,8 +7,8 @@
 * [travis-ci]()
 
 * Documentation
-* [api docs](http://xyz.com) (API servers)
-* [jsdoc](http://xyz.com) (Server assignments)
+
+* [jsdoc](comments only)
 
 
 ### Setup
@@ -26,7 +26,7 @@
 * What assertions need to be / should be made?
 
 #### UML
-* ![dataModel](mongooseSchema.jpg)
+* ![dataModel](people&teamModel.jpg)
 
 
 

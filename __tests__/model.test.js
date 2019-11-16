@@ -3,6 +3,7 @@ const Teams = require('../models/teams.js');
 const People = require('../models/people.js');
 const supertester = require('./supertester.js');
 
+
 let people = new People();
 
 describe('Model', () => {
@@ -11,9 +12,15 @@ describe('Model', () => {
     expect(person).toBeDefined();
   });
 
-  xit('can read', () => {});
+  test('can read', () => {
+    let person = people.get('_id');
+    expect(person).toBeDefined();
+  });
 
-  xit('can update', () => {});
+  test('can update', () => {
+    let person = people.update('_id', 'item');
+    expect(person).toBeDefined();
+  });
 
   xit('can delete', () => {});
 });

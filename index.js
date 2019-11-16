@@ -11,22 +11,54 @@ const configs = {
 const Teams = require('./models/teams.js');
 const People = require('./models/people.js');
 
+// Instantiate team and people class 
 let people = new People();
 let team = new Teams();
+
+
 /**
- * which creates new people to our database
- * @function makePerson
+ * this function shows each record 
+ * @param person  takes two line of arguments process.argv firstName and lastName of people
+ * display the whole record for each person based on the parameter
  */
+
+ const readPerson = async (person) => {
+   
+  // let myArgs = process.argv.slice(2)
+   //console.log('myArgs:', myArgs);
+ 
+   let firstName = process.argv[2];
+   let lastName = process.argv[3]; 
+ 
+   let allPeople = await people.getByQuery();
+   
+   allPeople.forEach(person => {
+     if (person.firstName===process.argv[2] && person.lastName === process.argv[3]) 
+     console.log({'firstName':person.firstName, 
+     'lastName':person.lastName,
+     'likes': person.likes,
+     'birthday':person.nextBirthdate,
+     'Team': person._team });
+   });
+    
+ };
+ 
+/**
+ * @function makePerson 
+ * creates new record on people data
+ */
+
+
 const makePerson = async () => {
   let peopled = {
-    firstName: 'James',
-    lastName: 'Dunn',
-    nextBirthdate: '2020/09/05',
+    firstName: 'MorganT',
+    lastName: 'Show',
+    nextBirthdate: '2020/07/12',
     likes: 'Both',
     _team: null
   }
   // console.log(peopled);
-  let newPerson = await people.create(peopled);
+ let newPerson = await people.create(peopled);
   console.log('peopleCreated', newPerson);
  let personid = newPerson._id;
   updatePerson(personid);
@@ -37,12 +69,17 @@ const makePerson = async () => {
 
 const makeTeam = async () => {
   let team1 = {
-    teamName: 'Red Heron',
+    teamName: 'test Heron',
     color: 'red'
    
   }
   let newTeam = await team.create(team1);
+  //new
+  // let teamid = newTeam._id;
+  // let member = newTeam.mem;
+  // updateTeam(teamid , member)
   console.log('team created:', newTeam);
+
 }
 /**
  * update person
@@ -52,83 +89,68 @@ const makeTeam = async () => {
    let teams = await team.get();
    let peoples = await people.get();
    console.log(peoples);
-   let teamId = teams[2]._id; 
-   //let peopleid = peoples[0]._id;
-
+   let teamId = teams[1]._id; 
    const updatedPerson = await people.update(personId, {_team: teamId});
         return updatedPerson;
   // console.log("updated", updatedPerson);
    
  }
 
-
-
-
-
-/**
- * this makes new team to our data base
- * @function maketeam
- */
-    
-/**
- * This counts our team and people data length
- * @function countData
- */
-const countData = async () => {
-  let Team = await team.count('_id');
-  console.log('Teams', Team) ;
-  let Person = await people.count('_id');
-  console.log('People', Person)
-}
-
-let myArgs = process.argv.slice(2)
-console.log('myArgs:', myArgs);
-
-
-/**
- * this returns person detail information form our database
- * if the firstName and lastName field is correct 
- * @function personInformation
- */
-const personInformation = async () => {
-  let firstName = process.argv[2];
-  let lastName = process.argv[3]; 
-
-  //console.log('firstName:', firstName);
-  let detail = await people.getByQuery({firstName:firstName, lastName:lastName,   });
-  
-  //console.log('here!', detail);
- // let personData = await detail;
-  let personData =  detail[0];
-  console.log(personData);
-  console.log(`name: ${personData.firstName} ${personData.lastName}`);
-  console.log(`likes: ${personData.likes}`);
-  console.log(`teams: ${personData.Team}`);
-  console.log(`Birthday: ${personData.nextBirthdate}`);
-  
-
-}
-
-
-  /**
-   * This function call each the above functions asynchronously 
-   * @function  foo 
-   * run each function asyncroniously 
-   */
-  
-  async function foo() {
-    await mongoose.connect(db, configs);
-    console.log('connected');
-    await makePerson(); 
-    //await makeTeam();
-    console.log('person created!');
-   await updatePerson();
+ /**
+  * this makes new team to our data base
+  * @function maketeam
+  */
+     
+ /**
+  * This counts our team and people data length
+  * @function countData
+  */
+ const countData = async () => {
+   let Team = await team.count('_id');
+   console.log('Teams', Team) ;
+   let Person = await people.count('_id');
+   console.log('People', Person)
+ }
+ 
+ /**
+  * This function call each the above functions asynchronously 
+  * @function  foo 
+  * run each function asyncroniously 
+  */
+ 
+ async function foo() {
+   await mongoose.connect(db, configs);
+   //console.log('connected');
    await countData();
-   //await personInformation();
-   console.log('team created!');
-    await mongoose.connection.close();
-    console.log("closed"); 
-  }
+   await readPerson();
+   //await makePerson(); 
+   //await makeTeam();
+   //console.log('person created!');
+  //await updatePerson();
+  //await personInformation();
+  //console.log('team created!');
+   await mongoose.connection.close();
+  // console.log("closed"); 
+ }
+ 
+ 
+ foo(); 
+
+
+
+
+
+
+
+
+
+ 
+
+ 
   
 
-foo(); 
+
+
+
+
+
