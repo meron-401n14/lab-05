@@ -1,0 +1,57 @@
+People
+Convert your people.js so that it properly uses your new model.js
+Hint: We did this in the demo [/demo/mongo]
+Move your schema definition into a new file called people-schema.js, and use Mongoose to properly define your schema
+Hint: We did this in the demo [/demo/mongo]
+Think about:
+If something is an id, we should have a _ at the beginning of its key name
+Add to your schema so that it matches the following rough outline (note: you will need to convert this to match Mongoose types)
+{
+  firstName: {required: true, type: 'string'},
+  lastName: {required: true, type: 'string'},
+  team: {required: false, type: 'id'},
+  birthday: {required: true, type: 'date'},
+  likes: {required: true, type: 'string', lowercase: true, enum: ['cats', 'dogs', 'none', 'both']}
+}
+Teams
+Convert your teams.js so that it properly uses your new model.js
+Hint: We did this in the demo [/demo/mongo]
+Move your schema definition into a new file called teams-schema.js, and use Mongoose to properly define your schema
+Hint: We did this in the demo [/demo/mongo]
+Add to your schema so that it matches the following rough outline (note: you will need to convert this to match Mongoose types)
+{
+  name: {required: true, type: 'string'},
+  color: {required: true, type: 'string', lowercase: true, enum: ['red', 'blue', 'yellow']}
+}
+Data Operations
+Add each of your classmates to your database (do not set their teams). Add yourself as well, so that you have a total of 7 people
+Add the following four teams:
+{
+  name: 'Red Heron',
+  color: 'red'
+}
+{
+  name: 'Blue Otter',
+  color: 'blue'
+}
+{
+  name: 'Yellow Rhino',
+  color: 'yellow'
+}
+Randomly assign each person to a team, so that you have two teams of two and one team of three
+In your index.js write a code that will do the following based on command line arguments:
+No command line arguments: print the count of Teams and People
+Name of a person command line argument: print the information for that person if a person was found. Print “No record found”, if that name doesn’t exist in the database
+Name of a team command line argument: print the information for that team and the members of that team if the team name was found. Otherwise print “No record found”.
+See sample output below:
+>> node index.js
+
+Teams: 3
+People: 7
+
+>> node index.js Sonia Kandah
+
+Name: Test Test
+Team: Yellow Rhino
+Birthday: 2/22/2020
+Likes: Cats and Dogs
