@@ -4,7 +4,8 @@
 
 ### Links and Resources
 * [submission PR](https://github.com/meron-401n14/lab-05/pull/1)
-* [travis-ci]()
+* [travis-ci](https://www.travis-ci.com/meron-401n14/lab-05)
+* [npm test](npmTest.jpg)
 
 * Documentation
 
